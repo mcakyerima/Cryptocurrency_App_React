@@ -1,5 +1,5 @@
 // import redux tools for creating API and fetch base queries
-import { createApi , fetchBaseQuery } from '@reduxjs/tookit/query';
+import { createApi , fetchBaseQuery } from '@reduxjs/toolkit/query';
 
 // this is were we do the login of fetching the data from the API
 // the snippet below is copied from rapid API code snipet for testing endpoint
@@ -28,5 +28,5 @@ export const cryptoApi = createApi({
 );
 
 export const {
-    useGetCryptosQuery
+    useGetCryptosQuery,
 } = cryptoApi
