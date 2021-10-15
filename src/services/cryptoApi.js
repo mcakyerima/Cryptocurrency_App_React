@@ -1,5 +1,5 @@
 // import redux tools for creating API and fetch base queries
-import { createApi , fetchBaseQuery } from '@reduxjs/toolkit/query';
+import { createApi , fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 // this is were we do the login of fetching the data from the API
 // the snippet below is copied from rapid API code snipet for testing endpoint
@@ -10,14 +10,16 @@ const cryptoApiHeaders = {
     'x-rapidapi-key': 'ac97bb6c2dmsh42c91c5bb0db9a7p1f1648jsn88feaf9595bd'
 }
 
-const baseUrl = 'https://coinranking1.p.rapidapi.com/exchanges'
+const baseUrl = 'https://coinranking1.p.rapidapi.com'
 
 // create a simple utility function that add the URL and the headers to our calls
 const createRequest = (url) => ({url , headers:cryptoApiHeaders})
+console.log(createRequest)
 
 // create Api with redux and export it
 export const cryptoApi = createApi({
     reducerPath : 'crptoApi',
+    // baseQuery...url for our fetch base query...in our case, rapid Api
     baseQuery: fetchBaseQuery({baseUrl}),
     endpoints: (builder) => ({
         getCryptos: builder.query({
@@ -27,6 +29,8 @@ export const cryptoApi = createApi({
 }
 );
 
+// we wrap our getCrypto with use *** and Query to make redux to create a hook to our query..this is needed
+// allows us to get access to all the data from our qaueries and it also gives us a loading state and completed state
 export const {
     useGetCryptosQuery,
 } = cryptoApi
