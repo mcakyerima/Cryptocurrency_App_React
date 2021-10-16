@@ -10,7 +10,7 @@ import millify from 'millify';
 const { Title } = Typography;
 const Homepage = () => {
     // get our query data with redux using the isFetching state and data hook
-    const { data , isFetching } = useGetCryptosQuery();
+    const { data , isFetching } = useGetCryptosQuery(10);
     if(data){
         console.log('this is data' , Object.keys(data), data.data)
     }
@@ -27,14 +27,16 @@ const Homepage = () => {
                 <Col span={12}> <Statistic title="Total Markets" value={globalStats.totalMarkets}/> </Col>
             </Row>
             <div className="home-heading-container">
-                <Title level={2} className="home-title">Top 10 Cryptocurrencies</Title>
+                <Title level={2} className="home-title">Top 10 Cryptocurrencies in the World</Title>
                 <Title level={3} className='show-more'><Link to="/cryptocurrencies">Show More</Link></Title>
             </div>
+            <Cryptocurrencies simplified/>
             <div className="home-heading-container">
                 <Title level={2} className="home-title">Latest Crypto News</Title>
                 <Title level={3} className='show-more'><Link to="/News">Show More</Link></Title>
             </div>
-
+            <News simplified/>
+         
         </>
     )
 }
