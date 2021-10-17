@@ -42,7 +42,6 @@ const App = () => {
                         <Link to='/'>Home</Link>
                         <Link to='/exchanges'>Exchanges</Link>
                         <Link to='/news'>News</Link>
-        
                     </Space>
                     <Typography.Paragraph style={{color: 'white'}}>
                         made with 💖 by Mc Ak Yerima

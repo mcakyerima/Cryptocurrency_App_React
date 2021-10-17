@@ -3,22 +3,38 @@ import millify from 'millify';
 import {Link } from 'react-router-dom';
 import { Card, Row, Col, Input } from 'antd';
 import { useGetCryptosQuery } from '../services/cryptoApi';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 const Cryptocurrencies = ( { simplified }) => {
     // destructure data as cryptolist and isfetching as Loading to useGetCryptosQuery
-    const { data : cryptoList , isFetching : Loading} = useGetCryptosQuery(count);
-    const [cryptos , setCryptos ] = useState(cryptoList?.data?.coins);
-    if(Loading) return "Loading";
-
-    console.log("this is crypto" , cryptos)
     const count = simplified ? 10 : 100;
 
+    const { data : cryptoList , isFetching : Loading} = useGetCryptosQuery(count);
+    const [cryptos , setCryptos ] = useState([]);
+    const [searchTerm , setSearchTerm] = useState('')
+    // use useEffect to filter and call the filter funcition when ever the cryptolist and search term changes
+    useEffect( ()=> {
+        const filteredData = cryptoList?.data?.coins.filter((coin) => coin.name.toLowerCase().includes(searchTerm.toLocaleLowerCase()))
+        // set the cryptos state Filtered data so that it only displays the searched crypto
+        setCryptos(filteredData);
+    }, [cryptoList, searchTerm])
+    if(Loading) return "Loading";
+    
+
+    console.log("this is crypto" , cryptos)
+
     return (
+        
        <>
+            {!simplified && (
+                <div className="search-crypto">
+                <input placeholder="search Cryptocurrency" autoFocus onChange= {(e) =>   setSearchTerm(e.target.value)} ></input>
+            </div>
+            )}
+            
             <Row gutter={[32 , 32]} className="crypto-card-container">
-                {cryptos.map(( currency) => (
+                {cryptos?.map(( currency) => (
                     <Col xs={24} sm={12} lg={6} key={currency.id} className='crypto-card'>
                         <Link to={`/crypto/${currency.id}`}>
                             <Card title={`${currency.rank}. ${currency.name}`}

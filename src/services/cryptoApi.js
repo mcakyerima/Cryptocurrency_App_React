@@ -18,12 +18,12 @@ console.log(createRequest)
 
 // create Api with redux and export it
 export const cryptoApi = createApi({
-    reducerPath : 'crptoApi',
+    reducerPath : 'cryptoApi',
     // baseQuery...url for our fetch base query...in our case, rapid Api
     baseQuery: fetchBaseQuery({baseUrl}),
     endpoints: (builder) => ({
         getCryptos: builder.query({
-            query: (count) => createRequest(`/coins?.limit=${count}`)
+            query: (count) => createRequest(`/coins?limit=${count}`)
         })
     })
 }
@@ -31,6 +31,4 @@ export const cryptoApi = createApi({
 
 // we wrap our getCrypto with use *** and Query to make redux to create a hook to our query..this is needed
 // allows us to get access to all the data from our qaueries and it also gives us a loading state and completed state
-export const {
-    useGetCryptosQuery,
-} = cryptoApi
+export const { useGetCryptosQuery } = cryptoApi
