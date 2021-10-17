@@ -7,8 +7,9 @@ const { Text , Title} = Typography;
 const { Options } = Select;
 const News = ({ simplified }) => {
     // pull out data from
-    const { data:cryptoNews } =  useGetCryptoNewsQuery({ newsCategory: 'Cryptocurrency', count: simplified ? 10 : 100});
-    console.log('crypto News' ,cryptoNews)
+    const { data: cryptoNews } = useGetCryptoNewsQuery({ Cryptocurrency: 'newsCategory', count: simplified ? 6 : 12 });
+    if(!cryptoNews) return "Loading News";
+    console.log(cryptoNews)
     return (
         <div>
             News
