@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 const Cryptocurrencies = ( { simplified }) => {
     // destructure data as cryptolist and isfetching as Loading to useGetCryptosQuery
     const count = simplified ? 10 : 100;
-
+    // fetch cryptocurrency
     const { data : cryptoList , isFetching : Loading} = useGetCryptosQuery(count);
     const [cryptos , setCryptos ] = useState([]);
     const [searchTerm , setSearchTerm] = useState('')

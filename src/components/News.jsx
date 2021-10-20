@@ -1,25 +1,50 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import { Select , Typography , Row, Avatar, Card, Col } from 'antd';
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
+import { useGetCryptosQuery } from '../services/cryptoApi';
+
 import moment from 'moment';
 const demoImage = 'http://coinrevolution.com/wp-content/uploads/2020/06/cryptonews.jpg'
 
 const { Text , Title} = Typography;
-const { Options } = Select;
+const { Option } = Select;
 const News = ({ simplified }) => {
+    const [newsCategory , setNewsCategory ] = useState('Cryptocurrency')
     // pull out data from
-    const { data: cryptoNews } = useGetCryptoNewsQuery({ newsCategory: 'Cryptocurrency', count: simplified ? 6 : 12 });
+    const { data: cryptoNews } = useGetCryptoNewsQuery({ newsCategory, count: simplified ? 6 : 12 });
+    const { data} = useGetCryptosQuery(100);
  
     if(!cryptoNews?.value) return 'Loading';
+    cryptoNews?.value?.map((news) => (console.log('this is news' , news.provider)))
     return (
         <Row gutter={[24 , 24]}>
+            {
+                !simplified && (
+                    <Col span={24}>
+                        <Select
+                            showSearch
+                            className="select-news"
+                            placeholder="select a Crypto"
+                            optionFilterProp="children"
+                            onChange={(value) =>setNewsCategory(value)}
+                            filterOption={(input , option) => option.children.toLowerCase().indexOf(input.toLocaleLowerCase()) >= 0}
+                        
+                        >
+                            {/* set the default value for options and loop thruough coin names in data.name.coin and add all 100 coin names to options */}
+                            <Option value="Cryptocurrency">Cryptocurrency</Option>
+                            { data?.data?.coins?.map((coin) => <Option value={coin.name}>{coin.name}</Option> )}
+
+                        </Select>
+                    </Col>
+                )
+            }
             {cryptoNews.value.map((news , key) => (
                 <Col xs={24} sm={12}  lg={8} key={key}>
                     <Card hoverable className="news-card">
                         <a href={news.url} target="_blank" rel='noferrer'>
                             <div className="news-image-container">
                                 <Title className="news-title" level={4}>{news.name}</Title>
-                                <img src={news?.image?.thumbnail?.contentUrl || demoImage} alt='news'/>
+                                <img style={{maxWidth:'200px' , maxHeight:'100px'}}  src={news?.image?.thumbnail?.contentUrl || demoImage} alt='news'/>
                             </div>
                             <p>
                                 {   news.description > 100 ? 
