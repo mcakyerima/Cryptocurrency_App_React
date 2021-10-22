@@ -163,8 +163,7 @@ a:hover{
 .stats-container{
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 40px;
+    gap: 90px;
 }
 
 .stats-container h2{
@@ -192,7 +191,7 @@ a:hover{
 
 .coin-stats-name{
     display: flex;
-    flex-direction:row;
+    /* flex-direction:row; */
     gap: 15px;
     font-size: 1rem;
     justify-content: center;
