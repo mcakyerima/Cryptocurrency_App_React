@@ -4,6 +4,7 @@ import {Link } from 'react-router-dom';
 import { Card, Row, Col, Input } from 'antd';
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import { useState, useEffect } from 'react';
+import Loader from './Loader';
 
 
 const Cryptocurrencies = ( { simplified }) => {
@@ -19,7 +20,7 @@ const Cryptocurrencies = ( { simplified }) => {
         // set the cryptos state Filtered data so that it only displays the searched crypto
         setCryptos(filteredData);
     }, [cryptoList, searchTerm])
-    if(Loading) return "Loading";
+    if(Loading) return <Loader/>;
     
 
     console.log("this is crypto" , cryptos)

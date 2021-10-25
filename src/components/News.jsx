@@ -2,6 +2,7 @@ import React ,{useState} from 'react';
 import { Select , Typography , Row, Avatar, Card, Col } from 'antd';
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
 import { useGetCryptosQuery } from '../services/cryptoApi';
+import Loader from './Loader';
 
 import moment from 'moment';
 const demoImage = 'http://coinrevolution.com/wp-content/uploads/2020/06/cryptonews.jpg'
@@ -14,7 +15,7 @@ const News = ({ simplified }) => {
     const { data: cryptoNews } = useGetCryptoNewsQuery({ newsCategory, count: simplified ? 6 : 12 });
     const { data} = useGetCryptosQuery(100);
  
-    if(!cryptoNews?.value) return 'Loading';
+    if(!cryptoNews?.value) return <Loader/>;
     cryptoNews?.value?.map((news) => (console.log('this is news' , news.provider)))
     return (
         <Row gutter={[24 , 24]}>

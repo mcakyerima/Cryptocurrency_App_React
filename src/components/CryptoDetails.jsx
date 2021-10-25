@@ -13,6 +13,7 @@ import { MoneyCollectOutlined,
           ThunderboltOutlined, 
           LinkOutlined} 
           from '@ant-design/icons';
+import Loader from './Loader';
 import { useGetCryptoDetailsQuery , useGetCryptoHistoryQuery } from '../services/cryptoApi';
 
 const { Title , Text } = Typography;
@@ -26,7 +27,7 @@ const CryptoDetails = () => {
     const { data , isFetching } = useGetCryptoDetailsQuery(coinId);
     const {data : coinHistory, isFetching: Loading } = useGetCryptoHistoryQuery({coinId , timePeriod });
     const cryptoDetails = data?.data?.coin;
-    if(isFetching) return "Loading";
+    if(isFetching) return <Loader/>;
     console.log('coin details by id' , data)
     const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
 

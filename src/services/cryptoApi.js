@@ -30,6 +30,9 @@ export const cryptoApi = createApi({
         }),
         getCryptoHistory : builder.query({
             query: ({coinId , timePeriod}) => createRequest(`/coin/${coinId}/history/${timePeriod}`)
+        }),
+        getExchanges : builder.query({
+            query: () => createRequest('/exchanges/')
         })
     })
 }
@@ -37,4 +40,4 @@ export const cryptoApi = createApi({
 
 // we wrap our getCrypto with use *** and Query to make redux to create a hook to our query..this is needed
 // allows us to get access to all the data from our qaueries and it also gives us a loading state and completed state
-export const { useGetCryptosQuery, useGetCryptoHistoryQuery,useGetCryptoDetailsQuery } = cryptoApi
+export const { useGetCryptosQuery, useGetCryptoHistoryQuery,useGetCryptoDetailsQuery, useGetExchangesQuery } = cryptoApi
