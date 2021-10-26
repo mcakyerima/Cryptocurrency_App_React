@@ -1,7 +1,7 @@
 import React from 'react';
 import {Switch, Route , Link } from 'react-router-dom';
 import {Layout, Typography , Space} from 'antd';
-import { Navbar , Exchanges , Cryptocurrencies , News , CryptoDetails , Homepage } from './components';
+import { Navbar , Exchanges , Cryptocurrencies , News , CryptoDetails , Homepage , About} from './components';
 import './App.css';
 const App = () => {
     return (
@@ -30,6 +30,9 @@ const App = () => {
                             <Route exact path="/news">
                                 <News/>
                             </Route>
+                            <Route exact path="/about">
+                                <About/>
+                            </Route>
                         </Switch>
                     </div>
                 </Layout>
@@ -42,6 +45,8 @@ const App = () => {
                         <Link to='/'>Home</Link>
                         <Link to='/exchanges'>Exchanges</Link>
                         <Link to='/news'>News</Link>
+                        <Link to='/about'>About</Link>
+
                     </Space>
                     <Typography.Paragraph style={{color: 'white'}}>
                         made with 💖 by Mc Ak Yerima
