@@ -76,6 +76,32 @@ a:hover{
     align-items: center;
 }
 
+.about-container{
+    padding:20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: -10px;
+}
+
+.about-container .about-name{
+    color: #b83d00;
+}
+
+.about-container .icons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+}
+
+.about-container .icons::nth-child(1){
+    margin-left:50px;
+}
+
+
 @media screen and (max-width:1300px){
     .main{
         margin-left: 50px;
