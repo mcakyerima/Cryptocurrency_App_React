@@ -2,7 +2,9 @@ import React , { useState , useEffect } from 'react'
 import { Button, Menu, Typography, Avatar } from 'antd';
 import {Link } from 'react-router-dom';
 import { HomeOutlined, MoneyCollectOutlined, BulbOutlined , FundOutlined , MenuOutlined, UserOutlined } from '@ant-design/icons';
-import icon from '../images/cryptocurrency.png'
+import icon from '../images/cryptocurrency.png';
+import Slide from 'react-reveal/Slide';
+
 
 const Navbar = () => {
     const [ activeMenu , setActiveMenu ] = useState(true);
@@ -31,13 +33,14 @@ const Navbar = () => {
             <div className="logo-container">
                 <Avatar src={icon} size='large'/>
                 <Typography.Title level={3} className="logo">
-                    <Link to='/'>Kawocurrency</Link>
+                    <Link to='/'>Cryptosphere</Link>
                 </Typography.Title>
                 <Button className="menu-control-container" onClick={()=> setActiveMenu(!activeMenu)}>
                     <MenuOutlined/>
                 </Button>
             </div>
             {activeMenu && (
+                <Slide right>
                      <Menu theme="dark">
                      <Menu.Item icon={<HomeOutlined/>}>
                          <Link to="/">Home</Link>
@@ -56,6 +59,8 @@ const Navbar = () => {
                      </Menu.Item>
      
                  </Menu>
+                </Slide>
+                    
             )}
             {/* creating our menu */}
            

@@ -3,6 +3,8 @@ import { Select , Typography , Row, Avatar, Card, Col } from 'antd';
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import Loader from './Loader';
+import Slide from 'react-reveal/Slide';
+
 
 import moment from 'moment';
 const demoImage = 'http://coinrevolution.com/wp-content/uploads/2020/06/cryptonews.jpg'
@@ -40,7 +42,9 @@ const News = ({ simplified }) => {
                 )
             }
             {cryptoNews.value.map((news , key) => (
+           
                 <Col xs={24} sm={12}  lg={8} key={key}>
+                <Slide bottom>
                     <Card hoverable className="news-card">
                         <a href={news.url} target="_blank" rel='noferrer'>
                             <div className="news-image-container">
@@ -64,6 +68,8 @@ const News = ({ simplified }) => {
 
                         </a>
                     </Card>
+            </Slide>
+
                 </Col>
             ))}
 
