@@ -5,6 +5,7 @@ import { Card, Row, Col, Input } from 'antd';
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import { useState, useEffect } from 'react';
 import Slide from 'react-reveal/Slide';
+import { AutoComplete } from 'antd';
 
 import Loader from './Loader';
 
