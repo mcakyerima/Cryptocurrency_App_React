@@ -1,5 +1,6 @@
 import React from 'react';
 import Slide from 'react-reveal/Slide';
+import image from '../images/about_image.png';
 
 import {Typography , Row , Col } from 'antd';
 import { GithubOutlined , LinkedinOutlined, InstagramOutlined, TwitterOutlined } from '@ant-design/icons';
@@ -10,7 +11,7 @@ const About = () => {
              <Slide left>
                 <Col  xs={24} sm={20} lg={15} xl={12} className="image-container">
                     
-                    <img src={"https://avatars.githubusercontent.com/u/58314409?v=4"} className="about-image"/>
+                    <img src={image} className="about-image"/>
                 </Col>
             </Slide>
             <Col  xs={24} sm={20} lg={8} xl={12} className="body-container">
@@ -32,9 +33,9 @@ const About = () => {
                 <Col span={12} className="icons">
                     
                     <a href="https://github.com/mcakyerima"><GithubOutlined /></a>
-                    <a href='#'><LinkedinOutlined /></a>
-                    <a href='#'><InstagramOutlined /></a>
-                    <a href='#'><TwitterOutlined /></a>
+                    <a href='https://www.linkedin.com/in/mohammed-abba-kaka-a69144195/'><LinkedinOutlined /></a>
+                    <a href='https://www.instagram.com/mc_freesh/'><InstagramOutlined /></a>
+                    <a href='https://twitter.com/mcakyerima'><TwitterOutlined /></a>
                 </Col>
                 </Slide>
                 
